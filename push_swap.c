@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frgoncal <frgoncal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frgoncal <frgoncal@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:53:31 by frgoncal          #+#    #+#             */
-/*   Updated: 2022/06/09 17:11:20 by frgoncal         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:21:28 by frgoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,36 @@ int	ps_strlen(char **argv)
 	}
 	return (i);
 }
-/*
+
 int	main(int argc, char **argv)
 {
-	int	i;
+	t_stacks	stack;
+	int i;
+	int size;
 
-	i = 1;
 	if (argc > 1)
 	{
+		i = 1;
+		size = ps_strlen(argv);
+		stack.a = malloc(size * sizeof(int));
+		if (!stack.a)
+			return (0);
+		stack.a_size = size;
+		stack.b = malloc(size * sizeof(int));
+		if (!stack.b)
+		{
+			free(stack.a);
+			return (0);
+		}
+		stack.b_size = 0;
 		while (i < argc)
 		{
-			if (*argv[i] != '\0')
-			{
-				printf("%s\n", argv[i]);
-				i++;
-			}
-			else
-				return (0);
+			stack.a[i] = ft_atoi(argv[i]);
+			printf("%d\n", stack.a[i]);
+			i++;
 		}
-	}
-	return (0);
-}
-*/
-
-int	main(int argc, char **argv)
-{
-	if (argc > 1)
-	{
-		argv++;
-		if (argc == 2)
-			argv = ft_split(*argv, ' ');
-		printf("%s\n", *argv);
-		//ft_push_swap(argv);
-		return (0);
+		free(stack.a);
+		free(stack.b);
 	}
 	return (0);
 }
