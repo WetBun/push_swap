@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frgoncal <frgoncal@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: frgoncal <frgoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 10:53:31 by frgoncal          #+#    #+#             */
-/*   Updated: 2022/06/13 18:21:28 by frgoncal         ###   ########.fr       */
+/*   Created: 2022/06/14 12:29:57 by frgoncal          #+#    #+#             */
+/*   Updated: 2022/06/14 12:30:00 by frgoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,41 @@ int	ps_strlen(char **argv)
 	return (i);
 }
 
-int	main(int argc, char **argv)
+void	push_swap(char **argv)
 {
 	t_stacks	stack;
-	int i;
-	int size;
+	int			i;
+	int			size;
 
+	i = 1;
+	size = ps_strlen(argv);
+	stack.a = malloc(size * sizeof(int));
+	if (!stack.a)
+		return ;
+	stack.a_size = size;
+	stack.b = malloc(size * sizeof(int));
+	if (!stack.b)
+	{
+		free(stack.a);
+		return ;
+	}
+	stack.b_size = 0;
+	while (i < size)
+	{
+		stack.a[i] = ft_atoi(argv[i]);
+		printf("%d\n", stack.a[i]);
+		i++;
+	}
+	free(stack.a);
+	free(stack.b);
+}
+
+int	main(int argc, char **argv)
+{
 	if (argc > 1)
 	{
-		i = 1;
-		size = ps_strlen(argv);
-		stack.a = malloc(size * sizeof(int));
-		if (!stack.a)
-			return (0);
-		stack.a_size = size;
-		stack.b = malloc(size * sizeof(int));
-		if (!stack.b)
-		{
-			free(stack.a);
-			return (0);
-		}
-		stack.b_size = 0;
-		while (i < argc)
-		{
-			stack.a[i] = ft_atoi(argv[i]);
-			printf("%d\n", stack.a[i]);
-			i++;
-		}
-		free(stack.a);
-		free(stack.b);
+		push_swap(argv);
+		return (0);
 	}
 	return (0);
 }

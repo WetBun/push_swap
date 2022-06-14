@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: frgoncal <frgoncal@student.42lisboa.com>   +#+  +:+       +#+         #
+#    By: frgoncal <frgoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/06 01:08:43 by frgoncal          #+#    #+#              #
-#    Updated: 2022/06/13 16:32:46 by frgoncal         ###   ########.fr        #
+#    Updated: 2022/06/14 11:28:49 by frgoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,8 @@ OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) libft.h
+$(NAME) : $(OBJ)
 		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
-
-%.o	: %.c
-		$(CC) $(CFLAGS) -c -o $@ $<
 
 clean :
 		rm -rf $(OBJ)
